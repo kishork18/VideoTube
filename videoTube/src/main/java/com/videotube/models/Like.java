@@ -16,14 +16,14 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name = "Like")
+@Table(name = "user_like")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long likeId;
+    private Long like_id;
     private LocalDate likeDate;
     @ManyToOne
     @JoinColumn(name = "user_id")
