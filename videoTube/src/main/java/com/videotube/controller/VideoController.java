@@ -25,7 +25,7 @@ public class VideoController {
 	  return ResponseEntity.status(HttpStatus.OK).body(res);
  }
   @GetMapping("/fetch-videos/{id}")
-  public ResponseEntity<?> downloadVideo(@PathVariable Long id){
+  public ResponseEntity<?> downloadVideo(@PathVariable Long id) throws IOException{
 	  byte[] videoData= vc.downloadVideo(id);
 	  return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("video/mp4")).body(videoData);
   }

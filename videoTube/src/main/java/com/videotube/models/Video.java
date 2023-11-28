@@ -34,9 +34,7 @@ public class Video {
     private String description;
     private LocalDate uploadDate;
     private String type;
-    @Lob
-    @Column(name = "videodata")
-    private byte []videodata;
+    private String videoPath;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
