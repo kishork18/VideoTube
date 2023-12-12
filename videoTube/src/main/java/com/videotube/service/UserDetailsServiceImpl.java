@@ -14,6 +14,12 @@ import com.videotube.repository.UserRepository;
 public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
     private UserRepository userRepo;
+	
+	public UserDetailsServiceImpl(UserRepository userRepo) {
+		super();
+		this.userRepo = userRepo;
+	}
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
