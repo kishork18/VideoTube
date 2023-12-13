@@ -76,8 +76,11 @@ public class User implements UserDetails,CredentialsContainer{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		 
-		return  null;
+		 Set<SimpleGrantedAuthority> newSet= new HashSet<>();
+		 for(RolesAndAuthority roles:authSet) {
+			 newSet.add(new SimpleGrantedAuthority(roles.getName()));
+		 }
+		return  newSet;
 	}
 
 	@Override

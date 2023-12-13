@@ -50,7 +50,6 @@ public class UserController {
     	user.setVideos(new ArrayList<>());
     	user.setComments(new ArrayList<>());
     	user.setLikes(new ArrayList<>());
-    	
     	user.setSubscriptions(new ArrayList<>());
     	user.setWatchHistory(new ArrayList<>());
     	Set<RolesAndAuthority> authset= user.getAuthSet();
@@ -58,6 +57,7 @@ public class UserController {
     	for(RolesAndAuthority role:authset) {
     		managedStateSet.add(rolesAndAuthSer.getRolesAndAuthority(role.getName()));
     	}
+    	user.setAuthSet(managedStateSet);
     	User u= us.addUser(user);
     	return new ResponseEntity<User>(u, HttpStatus.CREATED);
     	
