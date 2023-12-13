@@ -27,9 +27,9 @@ public class RolesAndAuthority {
   @JsonIgnore
   @ManyToMany(mappedBy = "authSet")
   private Set<User> users;
-public RolesAndAuthority(String name) {
+ public RolesAndAuthority(String name) {
 	super();
 	this.name = name;
-}
+ }
   
 }
