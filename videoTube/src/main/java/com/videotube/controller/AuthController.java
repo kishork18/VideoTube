@@ -9,34 +9,41 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.videotube.models.RolesAndAuthority;
-import com.videotube.models.User;
+import com.videotube.dto.JWTAuthResponse;
+import com.videotube.dto.LoginDTO;
+import com.videotube.entity.RolesAndAuthority;
+import com.videotube.entity.User;
+import com.videotube.service.AuthService;
 import com.videotube.service.RolesAndAuthorityService;
 import com.videotube.service.UserService;
 
 @RestController
 @RequestMapping("/users")
-public class UserController {
+@CrossOrigin(origins = "*")
+public class AuthController {
    
 	private UserService us;
     private BCryptPasswordEncoder passwordEncoder;
     private RolesAndAuthorityService rolesAndAuthSer;
+    private AuthService authService;
     
 
 	
 
-    public UserController(UserService us, BCryptPasswordEncoder passwordEncoder,
-			RolesAndAuthorityService rolesAndAuthSer) {
+    public AuthController(UserService us, BCryptPasswordEncoder passwordEncoder,
+			RolesAndAuthorityService rolesAndAuthSer,AuthService authService) {
 		super();
 		this.us = us;
 		this.passwordEncoder = passwordEncoder;
 		this.rolesAndAuthSer = rolesAndAuthSer;
+		this.authService=authService;
 	}
 
 
@@ -65,6 +72,15 @@ public class UserController {
 	@GetMapping("/logged-in-customer")
 	public ResponseEntity<User> getLoggedInCustomer(){
 		User customer = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		return new ResponseEntity<User>(customer, HttpStatus.CREATED);
+		return new ResponseEntity<User>(customer, HttpStatus.OK);
+	}
+	@PostMapping("/signin")
+	public ResponseEntity<JWTAuthResponse> login(@RequestBody LoginDTO logindto) {
+		
+		String token= authService.login(logindto);
+		  JWTAuthResponse jwtAuthResponse = new JWTAuthResponse();
+	        jwtAuthResponse.setAccessToken(token);
+		return new ResponseEntity<JWTAuthResponse>(jwtAuthResponse, HttpStatus.ACCEPTED);
+		
 	}
 }

@@ -2,7 +2,7 @@ package com.videotube.service;
 
 import java.util.List;
 
-import com.videotube.models.User;
+import com.videotube.entity.User;
 
 public interface UserService {
    public User addUser(User user);

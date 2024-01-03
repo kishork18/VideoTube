@@ -1,4 +1,5 @@
-package com.videotube.models;
+package com.videotube.entity;
+
 
 import java.time.LocalDate;
 
@@ -13,17 +14,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
-@Table(name = "Comment")
+@Table(name = "user_like")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comment {
+public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long commentId;
-    private String commentText;
-    private LocalDate commentDate;
+    private Long like_id;
+    private LocalDate likeDate;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -33,3 +34,4 @@ public class Comment {
     
     // Constructors, getters, setters, etc.
 }
+

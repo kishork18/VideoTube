@@ -1,4 +1,4 @@
-package com.videotube.models;
+package com.videotube.entity;
 
 import java.util.Set;
 

@@ -1,4 +1,4 @@
-package com.videotube.models;
+package com.videotube.entity;
 
 
 import java.time.LocalDate;
@@ -16,22 +16,23 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name = "user_like")
+@Table(name = "Subscription")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Like {
+public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long like_id;
-    private LocalDate likeDate;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    @ManyToOne
-    @JoinColumn(name = "video_id")
-    private Video video;
-    
-    // Constructors, getters, setters, etc.
-}
+    private Long subscriptionId;
 
+    @ManyToOne
+    @JoinColumn(name = "subscriber_id")
+    private User subscriber;
+
+    @ManyToOne
+    @JoinColumn(name = "channel_id")
+    private User channel;
+    private LocalDate subscriptionDate;
+    
+   
+}

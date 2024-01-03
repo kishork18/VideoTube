@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+
+    <h2>Login</h2>
+
+    <form id="loginForm" method="post" action="@{/login}">
+        <label for="usernameInput">Username:</label>
+        <input type="text" name="username" id="usernameInput" required>
+
+        <label for="passwordInput">Password:</label>
+        <input type="password" name="password" id="passwordInput" required>
+
+        <button type="button" onclick="login()">Login</button>
+    </form>
+
+    <script>
+        function login() {
+            const usernameInput = document.getElementById('usernameInput');
+            const passwordInput = document.getElementById('passwordInput');
+
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            const credentials = {
+                username: username,
+                password: password
+            };
+
+            fetch('http://localhost:8080/users/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(credentials),
+                credentials: 'include' 
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Login successful:', data);
+                localStorage.setItem("jwt",data.accessToken)
+                // You can add additional logic here to handle the response, such as redirecting to another page.
+            })
+            .catch(error => {
+                console.log('Error during login:', error);
+                // You can add additional error handling logic here
+            });
+        }
+    </script>
+
+</body>
+</html>

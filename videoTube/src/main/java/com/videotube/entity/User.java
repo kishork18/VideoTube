@@ -1,4 +1,4 @@
-package com.videotube.models;
+package com.videotube.entity;
 
 
 
@@ -52,6 +52,7 @@ public class User implements UserDetails,CredentialsContainer{
     private String email;
     @JsonProperty(access = Access.WRITE_ONLY)
     private String password;
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "userAuth", joinColumns = @JoinColumn(referencedColumnName = "userId"),
     inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
