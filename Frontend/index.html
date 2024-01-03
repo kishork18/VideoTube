@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Upload</title>
+</head>
+<body>
+
+    <h2>Video Upload</h2>
+
+    <form id="uploadForm">
+        <label for="fileInput">Select a video file:</label>
+        <input type="file" id="fileInput" accept="video/*" required>
+
+        <label for="titleInput">Video Title:</label>
+        <input type="text" id="titleInput" required>
+
+        <label for="descriptionInput">Video Description:</label>
+        <textarea id="descriptionInput" required></textarea>
+        <label for="visibility">Visibility:</label>
+        <input type="text" id="visibility" name="visibility" required>
+
+        <button type="button" onclick="uploadVideo()">Upload Video</button>
+    </form>
+    <a href="/login.html">Login</a>
+    <script>
+        function uploadVideo() {
+    const fileInput = document.getElementById('fileInput');
+    const titleInput = document.getElementById('titleInput');
+    const descriptionInput = document.getElementById('descriptionInput');
+    const visibilityInput = document.getElementById("visibility");
+
+    const file = fileInput.files[0];
+    const title = titleInput.value;
+    const description = descriptionInput.value;
+    const visibility = visibilityInput.value;
+    const jwtToken = localStorage.getItem("jwt");
+    
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const video = {
+        title: title,
+        description: description,
+        visibility: visibility
+    };
+    formData.append('video', new Blob([JSON.stringify(video)], { type: 'application/json' }));
+
+    fetch('http://localhost:8080/videos/upload-video', {
+        method: 'POST',
+        headers: {
+        'Authorization': `Bearer ${jwtToken}`,
+        // 'Content-Type': 'application/json',
+       },
+        
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Video uploaded successfully:', data);
+        // You can add additional logic here to handle the response
+    })
+    .catch(error => {
+        console.log('Error uploading video:', error);
+        // You can add additional error handling logic here
+    });
+}
+
+      </script>
+
+</body>
+</html>

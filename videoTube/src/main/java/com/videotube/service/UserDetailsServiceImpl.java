@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.videotube.models.User;
+import com.videotube.entity.User;
 import com.videotube.repository.UserRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

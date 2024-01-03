@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.videotube.models.User;
+import com.videotube.entity.User;
 import com.videotube.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService {

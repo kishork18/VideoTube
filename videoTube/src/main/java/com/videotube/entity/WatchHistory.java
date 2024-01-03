@@ -1,4 +1,4 @@
-package com.videotube.models;
+package com.videotube.entity;
 
 
 import java.time.LocalDate;
@@ -13,26 +13,24 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+;
 
 @Entity
-@Table(name = "Subscription")
+@Table(name = "WatchHistory")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Subscription {
+public class WatchHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long subscriptionId;
-
+    private Long historyId;
     @ManyToOne
-    @JoinColumn(name = "subscriber_id")
-    private User subscriber;
-
+    @JoinColumn(name = "user_id")
+    private User user;
     @ManyToOne
-    @JoinColumn(name = "channel_id")
-    private User channel;
-    private LocalDate subscriptionDate;
+    @JoinColumn(name = "video_id")
+    private Video video;
+    private LocalDate watchDate;
     
     // Constructors, getters, setters, etc.
 }
