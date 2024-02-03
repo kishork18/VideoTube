@@ -1,4 +1,4 @@
-package com.videotube.service;
+package com.videotube.service.Impl;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,6 +19,8 @@ import com.videotube.entity.User;
 import com.videotube.entity.Video;
 import com.videotube.entity.Visibility;
 import com.videotube.repository.VideoRepositry;
+import com.videotube.service.UserService;
+import com.videotube.service.VideoService;
 @Service
 public class VideoServiceImpl implements VideoService {
    private VideoRepositry videoRepo;

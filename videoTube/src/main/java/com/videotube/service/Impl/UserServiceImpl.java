@@ -1,4 +1,4 @@
-package com.videotube.service;
+package com.videotube.service.Impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.videotube.entity.User;
 import com.videotube.repository.UserRepository;
+import com.videotube.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired

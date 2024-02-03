@@ -1,9 +1,10 @@
-package com.videotube.service;
+package com.videotube.service.Impl;
 
 import org.springframework.stereotype.Service;
 
 import com.videotube.entity.RolesAndAuthority;
 import com.videotube.repository.RolesAndAuthorityRepository;
+import com.videotube.service.RolesAndAuthorityService;
 @Service
 public class RolesAndAuthorityServiceImpl implements RolesAndAuthorityService{
 	private RolesAndAuthorityRepository rar;

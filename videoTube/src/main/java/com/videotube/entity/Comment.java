@@ -2,6 +2,8 @@ package com.videotube.entity;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,9 +26,11 @@ public class Comment {
     private Long commentId;
     private String commentText;
     private LocalDate commentDate;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "video_id")
     private Video video;

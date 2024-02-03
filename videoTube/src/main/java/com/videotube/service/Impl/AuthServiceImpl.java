@@ -1,4 +1,4 @@
-package com.videotube.service;
+package com.videotube.service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.videotube.config.JwtTokenProvider;
 import com.videotube.dto.LoginDTO;
-import com.videotube.entity.User;
+import com.videotube.service.AuthService;
 @Service
 public class AuthServiceImpl implements AuthService {
+
 	@Autowired
 	private AuthenticationManager authmanager;
 	
@@ -26,5 +27,6 @@ public class AuthServiceImpl implements AuthService {
 		 String token = jwtTokenProvider.generateToken(authentication);
 		return token;
 	}
+
 
 }
